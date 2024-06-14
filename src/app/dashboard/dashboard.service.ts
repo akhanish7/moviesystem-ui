@@ -5,11 +5,15 @@ import {HttpClient} from "@angular/common/http";
   providedIn : 'root'
 })
 export class DashboardService{
+
+  baseUrl;
   constructor(private httpClient : HttpClient) {
+    this.baseUrl = 'https://movie-system-lbrl.onrender.com'
   }
 
-  getX(){
-    return this.httpClient.get('https://api.restful-api.dev/objects');
+  getTopMovies(filters : any){
+    console.log(this.baseUrl);
+    return this.httpClient.get(`${this.baseUrl}/movie/top`);
   }
 
 }
