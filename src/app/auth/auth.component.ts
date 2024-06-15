@@ -1,5 +1,7 @@
 import {Component, NgZone, OnInit} from '@angular/core';
 import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
+import {AuthService} from "./auth.service";
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-auth',
@@ -10,12 +12,14 @@ import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
 export class AuthComponent implements OnInit {
   private isSignInRequestInProgress = false;
 
+  constructor(private authService : AuthService) {
+  }
   ngOnInit(): void {
     // @ts-ignore
     window.onGoogleLibraryLoad = () => {
       // @ts-ignore
       google.accounts.id.initialize({
-        client_id: "666350615417-5f09uhtfe0lf6lksngifdl71julm3d3c.apps.googleusercontent.com",
+        client_id: environment.googleClientId,
         callback: this.handleCredentialResponse.bind(this),
         auto_select: false,
         cancel_on_tap_outside: false
@@ -51,11 +55,19 @@ export class AuthComponent implements OnInit {
     document.head.appendChild(script);
   }
 
-  handleCredentialResponse(response: CredentialResponse) {
+  async handleCredentialResponse(response: CredentialResponse) {
     // Handle the response from Google Sign-In
-    console.log('Credential Response:', response);
+    localStorage.setItem('token',response.credential);
+    this.authService.validateUserCredentails(response.credential).subscribe((userData) => {
+      this.updateUserInfo(userData);
+    })
     // Reset the flag after handling the response
     this.isSignInRequestInProgress = false;
+  }
+
+  async updateUserInfo(userData: any){
+    const response =  this.authService.saveUserData(userData).subscribe((res)=>{
+    })
   }
 }
 

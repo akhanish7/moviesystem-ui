@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn : 'root'
@@ -8,7 +9,7 @@ export class DashboardService{
 
   baseUrl;
   constructor(private httpClient : HttpClient) {
-    this.baseUrl = 'https://movie-system-lbrl.onrender.com'
+    this.baseUrl = environment.backendUrl;
   }
 
   getTopMovies(filters : any){
