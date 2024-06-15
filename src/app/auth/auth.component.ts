@@ -1,6 +1,5 @@
 import {Component, NgZone, OnInit} from '@angular/core';
 import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
-import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-auth',
@@ -16,7 +15,7 @@ export class AuthComponent implements OnInit {
     window.onGoogleLibraryLoad = () => {
       // @ts-ignore
       google.accounts.id.initialize({
-        client_id: environment.googleClientId,
+        client_id: "666350615417-5f09uhtfe0lf6lksngifdl71julm3d3c.apps.googleusercontent.com",
         callback: this.handleCredentialResponse.bind(this),
         auto_select: false,
         cancel_on_tap_outside: false
