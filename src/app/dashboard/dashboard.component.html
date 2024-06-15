@@ -1,2 +1,4 @@
 <app-movie-filter (filtersChanged)="onFiltersChanged($event)"></app-movie-filter>
-<app-movie-graph [movies]="movies"></app-movie-graph>
+<div *ngIf="isDataLoaded">
+  <app-movie-graph [movies]="movies"></app-movie-graph>
+</div>

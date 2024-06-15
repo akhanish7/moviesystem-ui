@@ -7,7 +7,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class MovieFilterComponent {
   @Output() filtersChanged = new EventEmitter<any>();
-  filters = { genre: '', language: '', year: '' };
+  filters = { genre: null, language: null, year: null };
 
   applyFilters() {
     this.filtersChanged.emit(this.filters);
