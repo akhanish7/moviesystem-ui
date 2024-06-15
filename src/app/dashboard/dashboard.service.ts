@@ -8,8 +8,7 @@ export class DashboardService{
 
   baseUrl;
   constructor(private httpClient : HttpClient) {
-    //this.baseUrl = 'https://movie-system-lbrl.onrender.com'
-    this.baseUrl = 'http://localhost:4000'
+    this.baseUrl = 'https://movie-system-lbrl.onrender.com'
   }
 
   getTopMovies(filters : any){
