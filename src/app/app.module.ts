@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {provideHttpClient} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {provideCharts, withDefaultRegisterables} from "ng2-charts";
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import {provideCharts, withDefaultRegisterables} from "ng2-charts";
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [ provideHttpClient(),provideCharts(withDefaultRegisterables())],
+  providers: [ provideHttpClient(),provideCharts(withDefaultRegisterables()),{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
