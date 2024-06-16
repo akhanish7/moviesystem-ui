@@ -1,19 +1,25 @@
-<form (submit)="applyFilters()">
-  <div>
-    <label for="genre">Genre:</label>
-    <input type="text" id="genre" [(ngModel)]="filters.genre" name="genre">
+<form (ngSubmit)="applyFilters()" class="filters-form">
+  <div class="row align-items-end">
+    <div class="col-md-3">
+      <label for="genre">Genre:</label>
+      <select id="genre" class="form-control" [(ngModel)]="selectedGenre" name="genre">
+        <option value="">Select Genre</option>
+        <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="language">Language:</label>
+      <select id="language" class="form-control" [(ngModel)]="selectedLanguage" name="language">
+        <option value="">Select Language</option>
+        <option *ngFor="let language of languages" [value]="language">{{ language }}</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="year">Year:</label>
+      <input type="number" id="year" class="form-control" [(ngModel)]="year" name="year" placeholder="Enter Year">
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-primary btn-block mt-2">Apply Filters</button>
+    </div>
   </div>
-
-  <div>
-    <label for="language">Language:</label>
-    <input type="text" id="language" [(ngModel)]="filters.language" name="language">
-  </div>
-
-  <div>
-    <label for="year">Year:</label>
-    <input type="number" id="year" [(ngModel)]="filters.year" name="year">
-  </div>
-
-  <button type="submit">Filter</button>
 </form>
-

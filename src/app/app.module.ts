@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {provideHttpClient} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {provideCharts, withDefaultRegisterables} from "ng2-charts";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import {provideCharts, withDefaultRegisterables} from "ng2-charts";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [ provideHttpClient(),provideCharts(withDefaultRegisterables())],
   bootstrap: [AppComponent]
