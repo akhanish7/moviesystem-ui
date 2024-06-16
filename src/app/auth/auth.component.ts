@@ -2,6 +2,7 @@ import {Component, NgZone, OnInit} from '@angular/core';
 import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
 import {AuthService} from "./auth.service";
 import { environment } from '../../environments/environment';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +13,7 @@ import { environment } from '../../environments/environment';
 export class AuthComponent implements OnInit {
   private isSignInRequestInProgress = false;
 
-  constructor(private authService : AuthService) {
+  constructor(private authService : AuthService,private router : Router) {
   }
   ngOnInit(): void {
     // @ts-ignore
@@ -58,16 +59,18 @@ export class AuthComponent implements OnInit {
   async handleCredentialResponse(response: CredentialResponse) {
     // Handle the response from Google Sign-In
     localStorage.setItem('token',response.credential);
-    this.authService.validateUserCredentails(response.credential).subscribe((userData) => {
+    this.authService.validateUserCredentails(response.credential).subscribe((userData: any) => {
       this.updateUserInfo(userData);
+      localStorage.setItem('userName',userData.name);
     })
+    await this.router.navigate(['/dashboard']);
     // Reset the flag after handling the response
     this.isSignInRequestInProgress = false;
   }
 
   async updateUserInfo(userData: any){
-    const response =  this.authService.saveUserData(userData).subscribe((res)=>{
-    })
+     this.authService.saveUserData(userData).subscribe((res)=>{
+    });
   }
 }
 

@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DashboardService} from "./dashboard.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,9 +12,13 @@ export class DashboardComponent implements OnInit{
   movies: any[] = [];
   isDataLoaded = false;
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService,private router : Router) { }
 
   async ngOnInit() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      await this.router.navigate(['/']);
+    }
     await this.fetchMovies({});
   }
 

@@ -6,16 +6,17 @@ import {provideHttpClient} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {provideCharts, withDefaultRegisterables} from "ng2-charts";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {HeaderComponent} from "./dashboard/header/header.component";
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [ provideHttpClient(),provideCharts(withDefaultRegisterables())],
   bootstrap: [AppComponent]
