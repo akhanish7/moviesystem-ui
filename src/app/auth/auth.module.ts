@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
 import {RouterModule} from "@angular/router";
 import {AuthService} from "./auth.service";
+import { AuthRoutingModule } from './auth-routing.module';
 
 
 @NgModule({
@@ -11,11 +12,7 @@ import {AuthService} from "./auth.service";
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{
-        path : '',
-        component : AuthComponent
-      }]
-    )
+    AuthRoutingModule
   ],
   providers : [AuthService]
 })
