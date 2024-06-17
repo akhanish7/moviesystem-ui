@@ -36,7 +36,9 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+    
+              },
+              "src/web.conf"
             ],
             "styles": [
               "src/styles.scss",
